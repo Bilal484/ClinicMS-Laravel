@@ -5,7 +5,7 @@ namespace Illuminate\View\Compilers\Concerns;
 trait CompilesConditionals
 {
     /**
-     * Compile the has-section statements into valid PHP.
+     * Compile the has section statements into valid PHP.
      *
      * @param  string  $expression
      * @return string
@@ -13,52 +13,6 @@ trait CompilesConditionals
     protected function compileHasSection($expression)
     {
         return "<?php if (! empty(trim(\$__env->yieldContent{$expression}))): ?>";
-    }
-
-    /**
-     * Compile the if-auth statements into valid PHP.
-     *
-     * @param  string|null  $guard
-     * @return string
-     */
-    protected function compileAuth($guard = null)
-    {
-        $guard = is_null($guard) ? '()' : $guard;
-
-        return "<?php if(auth()->guard{$guard}->check()): ?>";
-    }
-
-    /**
-     * Compile the end-auth statements into valid PHP.
-     *
-     * @return string
-     */
-    protected function compileEndAuth()
-    {
-        return '<?php endif; ?>';
-    }
-
-    /**
-     * Compile the if-guest statements into valid PHP.
-     *
-     * @param  string|null  $guard
-     * @return string
-     */
-    protected function compileGuest($guard = null)
-    {
-        $guard = is_null($guard) ? '()' : $guard;
-
-        return "<?php if(auth()->guard{$guard}->guest()): ?>";
-    }
-
-    /**
-     * Compile the end-guest statements into valid PHP.
-     *
-     * @return string
-     */
-    protected function compileEndGuest()
-    {
-        return '<?php endif; ?>';
     }
 
     /**
@@ -80,7 +34,7 @@ trait CompilesConditionals
      */
     protected function compileUnless($expression)
     {
-        return "<?php if (! {$expression}): ?>";
+        return "<?php if (! $expression): ?>";
     }
 
     /**
@@ -97,9 +51,10 @@ trait CompilesConditionals
     /**
      * Compile the else statements into valid PHP.
      *
+     * @param  string  $expression
      * @return string
      */
-    protected function compileElse()
+    protected function compileElse($expression)
     {
         return '<?php else: ?>';
     }
@@ -107,40 +62,21 @@ trait CompilesConditionals
     /**
      * Compile the end-if statements into valid PHP.
      *
+     * @param  string  $expression
      * @return string
      */
-    protected function compileEndif()
+    protected function compileEndif($expression)
     {
         return '<?php endif; ?>';
     }
 
     /**
-     * Compile the end-unless statements into valid PHP.
-     *
-     * @return string
-     */
-    protected function compileEndunless()
-    {
-        return '<?php endif; ?>';
-    }
-
-    /**
-     * Compile the if-isset statements into valid PHP.
+     * Compile the end unless statements into valid PHP.
      *
      * @param  string  $expression
      * @return string
      */
-    protected function compileIsset($expression)
-    {
-        return "<?php if(isset{$expression}): ?>";
-    }
-
-    /**
-     * Compile the end-isset statements into valid PHP.
-     *
-     * @return string
-     */
-    protected function compileEndIsset()
+    protected function compileEndunless($expression)
     {
         return '<?php endif; ?>';
     }

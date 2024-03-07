@@ -1,16 +1,27 @@
 <?php
 
-namespace App\Models;
-
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
+use App\PatientMedicalRecord;
+use App\PatientMedicineRecord;
+use Illuminate\Database\Eloquent\Model;
 
 class Medicine extends Model
 {
+    protected $fillable = [
+        'medicine_name',
+        'description',
+        'quantity',
+        'given_medicine',
+        'remain_medicine',
+        'expire_date',
+        'price',
+        'issue_date',
+    ];
 
-
-    protected $fillable = ['title', 'description', 'quantity'];
+    public function patientMedicalRecords()
+    {
+        return $this->hasMany(PatientMedicalRecord::class);
+    }
 }

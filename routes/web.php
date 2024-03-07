@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\StudentmedicalController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\StudentmedicalController;
+use  App\Http\Controllers\PatientMedicalRecordController;
+use App\Http\Controllers\PatientMedicineRecordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +65,7 @@ Route::group(array('middleware' => ['auth']), function () {
 
 	Route::resource('employee', 'EmployeeController');
 	Route::resource('doctor', 'DoctorController');
-	Route::resource('doctor', 'DoctorController');
+
 	Route::resource('patient', 'PatientController');
 	Route::resource('appointment', 'AppointmentController');
 	Route::resource('role', 'RoleController');
@@ -147,20 +150,11 @@ Route::group(array('middleware' => ['auth']), function () {
 	Route::get('account/package', ['as' => 'account.package', 'uses' => 'AccountController@packageReport']);
 
 
-	// medicine
-	Route::resource('/medicines', 'MedicineController');
+	Route::resource('medicine', 'MedicineController');
 
-	// student medical
+	Route::resource('patient_medical_record', 'PatientMedicalRecordController');
 
-	Route::resource('/Studentmedical', 'StudentmedicalController');
-	// Route::resource('/studentMedical', 'StudentmedicalController')->except(['index']);
-	Route::get('/studentMedical/create', 'StudentmedicalController@create')->name('studentmadical.create');
-	Route::get('/studentMedical/index', 'StudentmedicalController@index')->name('studentmadical.index');
-	// Route::post('/studentMedical/store', 'StudentmedicalController@store')->name('studentmedical.store');
-	Route::post('/studentMedical/store', 'StudentMedicalController@store')->name('studentmedical.store');
+	// Route::get('/patients_medicine_record', 'PatientMedicineRecordController@index')->name('patients_medicine_record.index');
 
-
-
-	// patientMedicien
-	Route::resource('patientmedicines', 'PatientMedicineController');
+	Route::get('/patient.medicine.record', [PatientMedicineRecordController::class, 'index']);
 });

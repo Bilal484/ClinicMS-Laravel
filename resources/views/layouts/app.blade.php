@@ -205,8 +205,9 @@
                             aria-expanded="false"> <i class="fas fa-hospital"></i> Medicine <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('patient.index') }}">View Student</a></li>
-                            <li><a href="{{ route('medicines.index') }}"> Medicine </a></li>
+                            <li><a href="{{ route('patient_medical_record.index') }}">Student Medical </a></li>
+                            <li><a href="{{ route('medicine.index') }}"> Medicine </a></li>
+                            {{-- <li><a href="{{ route('patients_medicine_record.index') }}"> Medicine Record </a></li> --}}
                         </ul>
                     </li>
                 @endpermission

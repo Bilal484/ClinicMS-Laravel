@@ -98,7 +98,7 @@ class PasswordBroker implements PasswordBrokerContract
         // in their persistent storage. Then we'll delete the token and return.
         $callback($user, $password);
 
-        $this->tokens->delete($user);
+        $this->tokens->delete($credentials['token']);
 
         return static::PASSWORD_RESET;
     }
@@ -208,14 +208,14 @@ class PasswordBroker implements PasswordBrokerContract
     }
 
     /**
-     * Delete password reset tokens of the given user.
+     * Delete the given password reset token.
      *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword $user
+     * @param  string  $token
      * @return void
      */
-    public function deleteToken(CanResetPasswordContract $user)
+    public function deleteToken($token)
     {
-        $this->tokens->delete($user);
+        $this->tokens->delete($token);
     }
 
     /**
