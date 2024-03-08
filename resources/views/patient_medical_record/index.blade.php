@@ -10,7 +10,7 @@
                 <a class="btn btn-success" href="{{ route('patient_medical_record.create') }}"> Create New Patient Medical
                     Record</a>
             </div><br>
-           
+
 
         </div>
         <form action="{{ route('patient_medical_record.index') }}" method="GET">
@@ -48,8 +48,9 @@
         @foreach ($patientMedicalRecords as $patientMedicalRecord)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $patientMedicalRecord->name }}</td>
                 <td>{{ $patientMedicalRecord->DBR }}</td>
+                <td>{{ $patientMedicalRecord->name }}</td>
+
                 <td>{{ $patientMedicalRecord->father_name }}</td>
                 <td>{{ $patientMedicalRecord->roll_no }}</td>
                 <td>{{ $patientMedicalRecord->class }}</td>
@@ -60,10 +61,12 @@
                 <td>{{ $patientMedicalRecord->remarks }}</td>
                 <td>{{ $patientMedicalRecord->date }}</td>
                 <td>
-                    <a class="btn btn-info"
-                        href="{{ route('patient_medical_record.show', $patientMedicalRecord->id) }}">Show</a>
+                    <a href="{{ route('patient-medicine-records.show', ['dbr' => $patientMedicalRecord->DBR]) }}"
+                        class="btn btn-primary">View Details</a>
+
                     <a class="btn btn-primary"
                         href="{{ route('patient_medical_record.edit', $patientMedicalRecord->id) }}">Edit</a>
+
                     {!! Form::open([
                         'method' => 'DELETE',
                         'route' => ['patient_medical_record.destroy', $patientMedicalRecord->id],
@@ -72,6 +75,7 @@
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 </td>
+
             </tr>
         @endforeach
     </table>

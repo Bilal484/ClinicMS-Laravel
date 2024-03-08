@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientMedicineRecord extends Model
 {
-   
+
 
     protected $fillable = [
         'DBR',
+        'name',
         'disease',
         'medicine_name',
         'medicine_description',
@@ -21,6 +22,6 @@ class PatientMedicineRecord extends Model
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class, 'DBR', 'id');
+        return $this->belongsTo(Patient::class, 'DBR', 'DBR');
     }
 }

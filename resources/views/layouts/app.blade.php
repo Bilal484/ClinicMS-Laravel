@@ -207,7 +207,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('patient_medical_record.index') }}">Student Medical </a></li>
                             <li><a href="{{ route('medicine.index') }}"> Medicine </a></li>
-                            {{-- <li><a href="{{ route('patients_medicine_record.index') }}"> Medicine Record </a></li> --}}
+                            <li><a href="{{ route('patients_medicine_record.index') }}"> Medicine Record </a></li>
                         </ul>
                     </li>
                 @endpermission

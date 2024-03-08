@@ -154,7 +154,18 @@ Route::group(array('middleware' => ['auth']), function () {
 
 	Route::resource('patient_medical_record', 'PatientMedicalRecordController');
 
-	// Route::get('/patients_medicine_record', 'PatientMedicineRecordController@index')->name('patients_medicine_record.index');
+	Route::get('/patients_medicine_record', 'PatientMedicineRecordController@index')->name('patients_medicine_record.index');
 
 	Route::get('/patient.medicine.record', [PatientMedicineRecordController::class, 'index']);
+
+
+	Route::get('/patient_medical_record/{DBR}', 'PatientMedicalRecordController@showdata')->name('patient_medicine_record.show');
+
+	Route::get('patient-medicine-records/{dbr}', 'PatientMedicineRecordController@show')->name('patient-medicine-records.show');
+
+	// for PDF
+
+	Route::get('download-pdf', 'PatientMedicineRecordController@downloadPdf')->name('download-pdf');
+	Route::get('patient-medicine-records/{dbr}/download-pdf', 'PatientMedicineRecordController@downloadPdf')->name('patient-medicine-records.download-pdf');
+
 });

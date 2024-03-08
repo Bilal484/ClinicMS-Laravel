@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Medicine;
+use App\PatientMedicineRecord;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -19,5 +20,11 @@ class PatientMedicalRecord extends Model
     public function medicine()
     {
         return $this->belongsTo(Medicine::class, 'medicine_name', 'medicine_name');
+    }
+
+    // PatientMedicalRecord model
+    public function patientMedicineRecord()
+    {
+        return $this->hasMany(PatientMedicineRecord::class, 'DBR', 'DBR');
     }
 }
